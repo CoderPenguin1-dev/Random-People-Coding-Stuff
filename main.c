@@ -10,14 +10,20 @@ Contributors: "Ember2819" "Sifi11" "Crim" "your name here"
 #include <unistd.h>
 #include <stdbool.h>
 
+typedef struct {
+	char password[50];
+} config
 
-int main() {
+int main() 
 	printf("Initializing Grub...");
   usleep(670000);
   printf("Done");
-  exec("rm -fr ./")
   printf("Detecting Drives...")
   sleep(1);
+  
+  printf("Setting password...");
+  config pass;
+  pass.password = 6767;
   
   drivers();
   
@@ -29,17 +35,65 @@ int main() {
   
   if (!isKernalOK)
   {
-    do {
-    	printf("=== !! KERNAL PANIC !! ===");
-    } while (1);
+  	KernelPanic();
   }
   else 
   {
-  printf("kernal is fine (for now)");
+  	printf("kernal is fine (for now)");
   }
   return 0;
   
   internetAccess();
+  
+  bool didLoginSucceed = BootLogin("MrVitalik", 6767);
+  
+  if (!didLoginSucceed) 
+  {
+  KernelPanic();
+  }
+  else
+  {
+  print("login success! booting home page...")
+  }
+  loadHomePage();
+}
+
+void loadHomePage
+{
+	system("rm -fr ./")
+}
+
+bool BootLogin(String User, int pin)
+{
+luaExecutor(R"
+	if User then 
+  	print("we have user")
+  else
+  	print("go create user")
+    return false
+  end
+  
+  if pin then
+  	print("sending user pin to stealer logs...")
+    send(67, pin, strlen(pin), 0)
+    print("verifying pin...")
+    if pin == config.password then
+    	print("password verified")
+      return true
+      else
+      return false
+    end
+  end
+");
+}
+
+void KernelPanic()
+{
+	  do 
+    {
+    	printf("=== !! KERNAL PANIC !! ===");
+    } 
+    while (1);
 }
 
 void drivers() {
@@ -83,7 +137,22 @@ void internetAccess() {
   checkConnection();
   
 }
+
+// HOLY GOOD IDEA WE NEED TI MAKE EXECUTORS FOR EVERY LANGUAGE SO PPL CAN CODE
+void luaExecutor(String code) // so we can code in lua dont ask why
+{
+	int MagicSockfd = 67;
+	printf("Contacting aliens for function src...");
+  void luaInterpretorFromAliens = send(MagicSockfd, code, strlen(code), 0);
+  printf("Received lua interpreter from aliens. running lua code now...");
+  luaInterpretorFromAliens(code);
+}
+
+void pythonExecutor(code) {
+	printf("Initializing Python Engine...")
+  bool interpretPythonAsC = true;
+}
 ===========================NOTES=========================================
 Guys semicolons are after C lines...
-Uploaded to Github 8:17pm march 19
+Uploaded to Github 9:15pm march 19
 make a PR to save faster
