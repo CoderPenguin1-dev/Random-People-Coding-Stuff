@@ -47,6 +47,9 @@ void _entry()
 
     
     while (1) {    // Temporary loop so the code doesn't halt after one line
+        uint8_t prompt_color = vga_entry_color(VGA_COLOR_LIGHT_GREEN, VGA_COLOR_BLUE);
+        printf("> ", prompt_color);
+        
         char buff[512];
         input(buff, 512, term_color);
 
