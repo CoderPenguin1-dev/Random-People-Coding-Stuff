@@ -68,8 +68,9 @@ There are 2 commands you can use for this:
 
 # Other details
 
-## Contact (If you want to be a point of contact email me and then you can add your email here)
+## Contact
 elroylilly@gmail.com for any questions
+If you want a pre-built Image email us
 
 Also, you can join the community slack [here](https://join.slack.com/t/communtiyos/shared_invite/zt-3t3iltj77-5JTo~dkpCm44tZcyA0Or_w)
 ## Pictures
